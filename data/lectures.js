@@ -107,6 +107,95 @@ const LECTURES = [
       'Convert the ARABESCA Using Tailwind.css',
       { text: 'Create this website using Tailwind', url: 'https://themewagon.github.io/stylish/index.html' }
     ]
-  }
+  },
+  {
+  id: 'L2',
+  title: 'React.js Fundamentals',
+  shortDescription: 'A JavaScript library for building user interfaces. React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.',
+  resourceUrl: 'https://react.dev/',
+  repoUrl: 'https://github.com/MoonesMezher/L2-React',
+  content: [
+    { type: 'heading', text: 'What is React?' },
+    { type: 'list', items: [
+      'Library (not a framework)',
+      'Created by Meta (Facebook)',
+      'Based on JavaScript',
+      'Easy to learn',
+      'Functional Programming (FP) approach',
+      'Uses Components = Functions = Reusable pieces',
+      'Supports TypeScript',
+      'Enables mobile (React Native) & desktop (Electron) development',
+      'Huge community → easy problem solving',
+      'Top choice for AI tools',
+      'Most popular in the market (#1)'
+    ]},
+    { type: 'heading', text: 'Vanilla JS vs React JS' },
+    { type: 'mapping', pairs: [
+      ['Vanilla JS (Pure JS)', 'Works directly with the real DOM'],
+      ['React JS', 'Uses a Virtual DOM for better performance']
+    ]},
+    { type: 'paragraph', text: 'The Virtual DOM is a lightweight copy of the real DOM. React updates it first, then efficiently applies changes to the real DOM.' },
+    
+    { type: 'heading', text: 'Installation (with Vite)' },
+    { type: 'paragraph', text: 'Vite is a fast build tool. Create a new React project:' },
+    { type: 'example', from: 'npm create vite@latest', to: 'Follow prompts: project name, select React, then variant (JavaScript or TypeScript)' },
+    { type: 'paragraph', text: 'Then:' },
+    { type: 'list', items: [
+      'cd your-project',
+      'npm install',
+      'npm run dev'
+    ]},
+    { type: 'note', text: 'If you see "npm error Missing script: \'dev\'", check: 1) node_modules exists, 2) package.json has "dev" script, 3) you are in the correct folder (beside package.json).' },
+
+    { type: 'heading', text: 'Project Structure (Vite + React)' },
+    { type: 'list', items: [
+      'node_modules/ – dependencies',
+      'public/ – static assets (images, icons, cached files)',
+      'src/ – main work folder',
+      '  main.jsx – entry point (connects HTML and React)',
+      '.gitignore',
+      'eslint.config.js – code formatting rules',
+      'index.html – the only HTML file (SPA)',
+      'package-lock.json',
+      'package.json – project metadata and scripts',
+      'README.md – documentation',
+      'vite.config.js – build tool configuration'
+    ]},
+    { type: 'paragraph', text: 'Everything you write in React goes inside the <div id="root"> element in index.html.' },
+
+    { type: 'heading', text: 'Components' },
+    { type: 'paragraph', text: 'Components are the building blocks. They are JavaScript functions that return markup. Think of them as reusable pieces, like Tailwind classes but for structure.' },
+    { type: 'heading', text: 'Examples of reusability' },
+    { type: 'list', items: [
+      'Navigation links (home, about, contact) – same design, different title and URL',
+      'Main buttons – same style, different text',
+      'Section titles – same typography, different heading'
+    ]},
+    { type: 'mapping', pairs: [
+      ['Component = Function', 'Returns JSX (HTML-like syntax)'],
+      ['Props', 'Arguments passed to components (like HTML attributes)'],
+      ['State', 'Data that changes over time, triggers re-render']
+    ]},
+
+    { type: 'heading', text: 'Advice' },
+    { type: 'paragraph', text: 'Shift your mindset from "one file, one page" to "component-based". If you see a design pattern repeated, turn it into a component. This is the React way — just like you think in utility classes with Tailwind.' },
+
+    { type: 'heading', text: 'Useful Libraries' },
+    { type: 'paragraph', text: 'AOS (Animate On Scroll) – https://michalsnik.github.io/aos/ – for smooth scroll animations in React.' },
+
+    { type: 'heading', text: 'Full Stack Project Structure' },
+    { type: 'mapping', pairs: [
+      ['Frontend (Client)', 'React (web), React Native (mobile), React Electron (desktop)'],
+      ['Backend (Server)', 'Node.js, Express, etc.']
+    ]}
+  ],
+  tasks: [
+    { 
+      text: 'Build this website using HTML & Tailwind CSS & AOS, and ensure it will be full respoosive on mobile screen.', 
+      url: 'https://themewagon.github.io/fruitkha'
+    },
+    'Install React project using vite.'
+  ]
+}
   // Add more lectures by copying the object above and changing id, title, content, tasks.
 ];
