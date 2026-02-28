@@ -196,6 +196,111 @@ const LECTURES = [
     },
     'Install React project using vite.'
   ]
+},
+{
+  id: 'L3',
+  title: 'React Project Setup & Core Concepts',
+  shortDescription: 'Learn how to strip a React project to its simplest form, understand how the browser loads a React app, create reusable components, work with JSX, pass data with props, and use fragments — all following functional programming principles.',
+  resourceUrl: 'https://react.dev/',
+  repoUrl: 'https://github.com/MoonesMezher/L3-React',
+  content: [
+    { type: 'heading', text: 'Reset React Project' },
+    { type: 'paragraph', text: 'To get the simplest possible React application (Single Page Application), clean up the default Vite + React boilerplate:' },
+    { type: 'list', items: [
+      'Delete icons in the `public` folder',
+      'Clear the `README.md` file',
+      'Remove the tab icon link from `index.html`',
+      'Delete these files/folders inside `src`: `App.jsx`, `index.css`, and the `assets` folder',
+      'Clean `main.jsx`: remove `<StrictMode>` and delete the `import "./index.css"` line'
+    ]},
+    { type: 'note', text: 'Result: a minimal React app with only the essential files – perfect for understanding the core mechanics.' },
+
+    { type: 'heading', text: 'Main Entry' },
+    { type: 'paragraph', text: 'React was created to make DOM manipulation easier and to encourage dividing the web page into reusable components.' },
+
+    { type: 'heading', text: 'Rules' },
+    { type: 'list', items: [
+      'FP (Functional Programming) → Create components as functions',
+      'You can add a `<link rel="stylesheet" href="./src/index.css">` in `index.html`, but it’s not recommended. Instead, import the CSS file inside `main.jsx`: `import "./index.css"`'
+    ]},
+    { type: 'note', text: 'Old versions of React used classes (OOP), but that style is outdated and no longer supported.' },
+
+    { type: 'heading', text: 'How the Browser Reads a React Project' },
+    { type: 'list', items: [
+      'Reads `index.html`',
+      'Loads everything inside the `<head>`, then moves to the `<body>`',
+      'Renders the `<div id="root">` element, then the `<script>` tag that connects to `main.jsx`',
+      'Executes all import statements in `main.jsx` (e.g., CSS files)',
+      'Creates a React root from the `root` DOM element to render all components',
+      'Renders the `<App />` component'
+    ]},
+
+    { type: 'heading', text: 'How App.jsx Renders New Content' },
+    { type: 'list', items: [
+      'Create a function inside `App.jsx`',
+      'The function must `return` the new content (JSX)'
+    ]},
+
+    { type: 'heading', text: 'How to Create a New Component (Function)' },
+    { type: 'list', items: [
+      'Create a new function – the first letter **must** be uppercase',
+      'Call this function anywhere in your code like an HTML tag'
+    ]},
+    { type: 'example', from: 'function NewFunction() {\n  return <div>Hello World</div>;\n}\n\n<NewFunction />', to: 'Component definition and usage' },
+
+    { type: 'heading', text: 'Best Practices for Components' },
+    { type: 'list', items: [
+      'Create a folder called `components`',
+      'Place each component in its own file inside that folder'
+    ]},
+    { type: 'note', text: 'Additional rules:\n• File name must start with an uppercase letter\n• Function name must start with an uppercase letter\n• Export the function if you want to use it elsewhere\n• File extension must be `.jsx` (or `.tsx` for TypeScript)' },
+
+    { type: 'heading', text: 'What is JSX?' },
+    { type: 'paragraph', text: 'JSX = JavaScript + XML (HTML-like syntax). It’s a syntax extension that lets you write HTML inside JavaScript.' },
+    { type: 'note', text: 'In TypeScript, it’s called TSX.' },
+
+    { type: 'heading', text: 'Working with JSX' },
+    { type: 'list', items: [
+      'Install an extension (e.g., ES7+ snippets) to speed up file creation',
+      'Use `{}` to embed JavaScript expressions inside HTML',
+      'Use `map()` to render arrays',
+      'Use ternary operators: `condition ? <A /> : <B />`'
+    ]},
+    { type: 'paragraph', text: 'Any JavaScript code can be placed **outside** (above) the `return` statement.' },
+
+    { type: 'heading', text: 'The "key" Prop Warning' },
+    { type: 'paragraph', text: 'When you see: `Each child in a list should have a unique "key" prop`' },
+    { type: 'list', items: [
+      'Check every place you used `map()`',
+      'Add a `key` prop to the outermost element returned inside the loop',
+      'The key must be a unique value (e.g., an item `id`) – it helps the virtual DOM identify which items changed'
+    ]},
+
+    { type: 'heading', text: 'Props' },
+    { type: 'paragraph', text: 'Props (short for "properties") are used to:' },
+    { type: 'list', items: [
+      'Pass data from a parent component to a child',
+      'Reuse the same design with different data',
+      'Passed as attributes when calling a component',
+      'Received as an object argument in the component function'
+    ]},
+    { type: 'example', from: 'function Greeting({ name }) {\n  return <h1>Hello, {name}!</h1>;\n}\n\n<Greeting name="Moones" />', to: 'Using props' },
+
+    { type: 'heading', text: 'Fragment Tag' },
+    { type: 'paragraph', text: 'Fragments solve two problems:' },
+    { type: 'list', items: [
+      'Respect the JSX rule that a function must return a single element',
+      'Avoid adding extra unnecessary nodes to the DOM'
+    ]},
+    { type: 'example', from: '<>\n  <ChildA />\n  <ChildB />\n</>', to: 'Short syntax for React.Fragment' },
+    { type: 'note', text: 'Use `<></>` or `<React.Fragment></React.Fragment>`.' }
+  ],
+  tasks: [
+    'Reset your React project following the steps above until you have a clean `main.jsx` and no extra files.',
+    'Create a new component called `Header` that returns a heading, and use it inside `App`.',
+    'Build a list component that receives an array of strings via props and renders them using `map()` with a unique key.',
+    'Experiment with fragments to wrap two sibling elements without adding a `<div>` to the DOM.'
+  ]
 }
   // Add more lectures by copying the object above and changing id, title, content, tasks.
 ];
