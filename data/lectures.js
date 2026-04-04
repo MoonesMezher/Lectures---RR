@@ -487,6 +487,55 @@ const LECTURES = [{
             'Build an Accordion component that toggles visibility of content with a button.',
             'Build a Form component with controlled inputs (e.g. name, age), add to a list, and persist the list in localStorage.'
         ]
+    },
+    {
+        id: 'L5',
+        title: 'Node.js Updates, Re-renders & useEffect',
+        shortDescription: 'Learn how to update Node.js on your machine, why state updates trigger a re-render, and how `useEffect` runs after render with no dependency array, an empty array, or a watched value. Includes a warning about dependency arrays and state updates that cause infinite loops.',
+        resourceUrl: 'https://react.dev/reference/react/useEffect',
+        repoUrl: 'https://github.com/MoonesMezher/L5-React',
+        content: [
+            { type: 'heading', text: 'How to update Node.js on your laptop' },
+            { type: 'paragraph', text: 'You need a current Node.js version for modern tooling (Vite, React, npm). Pick one approach and stick with it.' },
+            {
+                type: 'list',
+                items: [
+                    'Official installer: go to https://nodejs.org/, download the LTS installer for your OS, run it, and restart the terminal. Check with `node -v` and `npm -v`.',
+                    'Version manager (recommended for multiple projects): **nvm** (Mac/Linux) or **nvm-windows** on Windows — install nvm, then `nvm install --lts` and `nvm use <version>`. Lets you switch Node per project.',
+                    'Other managers: **fnm**, **n**, or **Volta** — similar idea: install a version, then select it for your shell or project.'
+                ]
+            },
+            { type: 'note', text: 'After any upgrade, close and reopen your terminal (or IDE) so `PATH` picks up the new `node` binary.' },
+
+            { type: 'heading', text: 'State updates and re-render' },
+            { type: 'paragraph', text: 'When you update state with a setter from `useState` (or similar), React schedules a re-render of that component (and children as needed). Any update to state causes the component to render again so the UI can reflect the new values.' },
+
+            { type: 'heading', text: 'useEffect — three dependency patterns' },
+            { type: 'paragraph', text: '`useEffect` runs **after** the component has rendered (after paint). What runs depends on the dependency array.' },
+            {
+                type: 'mapping',
+                pairs: [
+                    ['useEffect(() => { ... }) — no second argument', 'Runs after **every** render (same cadence as re-renders when state/props change)'],
+                    ['useEffect(() => { ... }, [])', 'Runs once after the **first** render (mount), then does not run again on later renders'],
+                    ['useEffect(() => { ... }, [counter])', 'Runs after first render, and again **whenever `counter` changes**']
+                ]
+            },
+            { type: 'example', from: 'useEffect(() => {\n  console.log("Hello World");\n});', to: 'After every render' },
+            { type: 'example', from: 'useEffect(() => {\n  console.log("Hello World");\n}, []);', to: 'Only after first mount' },
+            { type: 'example', from: 'useEffect(() => {\n  console.log("Hello World");\n}, [counter]);', to: 'When `counter` changes' },
+
+            { type: 'heading', text: 'Warning: state in the dependency array' },
+            { type: 'paragraph', text: 'Do **not** list a piece of state in the dependency array and then update that same state inside the effect without a safe condition. That pattern often causes: render → effect runs → `setState` → render → effect runs again → infinite loop.' },
+            { type: 'note', text: 'If you must react to state, either remove that state from deps and rethink the logic, use a ref, split effects, or add guards so the setter is not called every time in a way that retriggers the effect.' }
+        ],
+        tasks: [
+            'Verify your Node.js version (`node -v`). If it is old, update using an official installer or a version manager (nvm / nvm-windows).',
+            'Experiment: three `useEffect` snippets — no deps, `[]`, and `[counter]` — and observe `console.log` in the browser devtools.',
+            {
+                text: 'Build the Feane fast-food restaurant landing page using React and Tailwind (layout, hero, menu filters, sections, footer). Reference:',
+                url: 'https://themewagon.github.io/feane/'
+            }
+        ]
     }
     // Add more lectures by copying the object above and changing id, title, content, tasks.
 ];
