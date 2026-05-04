@@ -536,6 +536,72 @@ const LECTURES = [{
                 url: 'https://themewagon.github.io/feane/'
             }
         ]
+    },
+    {
+        id: 'L6',
+        title: 'useRef, Deploy on Render & React Router',
+        shortDescription: 'Use `useRef` to hold DOM nodes or mutable values without re-renders, combine it with `useEffect` to touch the DOM (e.g. change an element’s color), host a Vite React build on Render’s free static tier from GitHub, and introduce client-side routing with `react-router-dom` (BrowserRouter, Routes, Route, Link).',
+        resourceUrl: 'https://react.dev/reference/react/useRef',
+        repoUrl: 'https://github.com/MoonesMezher/Push-React-Project-on-Render',
+        content: [
+            { type: 'heading', text: 'useRef' },
+            {
+                type: 'list',
+                items: [
+                    'Import: `import { useRef } from "react"`',
+                    '`const ref = useRef(initial)` returns a stable object `{ current }`. You read and write `ref.current`.',
+                    'Updating `ref.current` does **not** trigger a re-render (unlike `useState`).',
+                    'Typical use: attach to a DOM element with `ref={ref}` so you can call DOM APIs (focus, scroll, measure, style).',
+                    'Also used to keep a mutable value across renders without causing extra renders (e.g. previous value, timer id).'
+                ]
+            },
+
+            { type: 'heading', text: 'useRef + useEffect (example: change element color)' },
+            { type: 'paragraph', text: 'After React paints the DOM, `useEffect` can safely use the ref. The ref points at the real element.' },
+            {
+                type: 'example',
+                from: 'const boxRef = useRef(null);\n\nuseEffect(() => {\n  if (boxRef.current) {\n    boxRef.current.style.backgroundColor = "tomato";\n  }\n}, []); // or [someState] to re-run when that changes\n\nreturn <div ref={boxRef} className="p-8">Hello</div>;',
+                to: 'Mount → effect runs → DOM node exists → set inline style (or classList)'
+            },
+            { type: 'note', text: 'Mix pattern: e.g. store `color` in `useState`, put `color` in the effect dependency array, and inside the effect set `boxRef.current.style.backgroundColor = color` so the DOM updates when state changes without storing the DOM node in state.' },
+
+            { type: 'heading', text: 'Deploy React (Vite) on Render for free (static site)' },
+            {
+                type: 'list',
+                items: [
+                    'Push your project to a GitHub repository.',
+                    'Create a free account on https://render.com/ and sign in.',
+                    'Create a **New Static Site**, connect the GitHub repo, and authorize Render if asked.',
+                    'Build command: `npm install && npm run build` (or `npm ci && npm run build`).',
+                    'Publish directory: `dist` (Vite’s default output folder).',
+                    'Deploy — Render builds on each push (depending on settings) and serves the static files on a free URL.'
+                ]
+            },
+            { type: 'note', text: 'If you add client-side routes (`react-router-dom`), configure a SPA fallback so unknown paths serve `index.html` (otherwise refreshing on `/about` can 404). Check Render docs for “redirects” or rewrite rules for static sites.' },
+
+            { type: 'heading', text: 'Intro: react-router-dom' },
+            { type: 'paragraph', text: 'Install: `npm install react-router-dom`. Wrap your app so every component can use routing hooks and components.' },
+            {
+                type: 'mapping',
+                pairs: [
+                    ['`<BrowserRouter>`', 'Provider-style wrapper: supplies routing context to the tree (like a context provider). Put it once around `<App />` in `main.jsx`.'],
+                    ['`<Routes>`', 'Container for multiple `<Route>` definitions.'],
+                    ['`<Route path="/about" element={<About />} />`', 'When the URL matches `path`, React renders `element`.'],
+                    ['`<Link to="/about">About</Link>`', 'Client-side navigation without full page reload (prefer over `<a href>` for in-app routes).']
+                ]
+            },
+            { type: 'example', from: '<BrowserRouter>\n  <Routes>\n    <Route path="/" element={<Home />} />\n    <Route path="/about" element={<About />} />\n  </Routes>\n</BrowserRouter>', to: 'Minimal router shell' },
+            { type: 'paragraph', text: 'Reference repo for pushing a Vite React project to Render: https://github.com/MoonesMezher/Push-React-Project-on-Render' }
+        ],
+        tasks: [
+            'Build a small demo: a `div` with `useRef`, and a `useEffect` that changes its background color (try empty deps vs a color state in the dependency array).',
+            'Deploy your Vite React app to Render as a static site: GitHub → Render → New Static Site → build + `dist` as publish directory.',
+            'Add `react-router-dom`: wrap the app in `BrowserRouter`, define two routes with `Routes` / `Route`, and navigate with `Link`.',
+            {
+                text: 'Recreate the Furnish eCommerce-style landing page in React + Tailwind. Prioritize a fully responsive layout (mobile, tablet, desktop). Reference:',
+                url: 'https://themewagon.github.io/furnish/'
+            }
+        ]
     }
     // Add more lectures by copying the object above and changing id, title, content, tasks.
 ];
